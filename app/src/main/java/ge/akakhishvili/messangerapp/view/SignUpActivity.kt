@@ -1,23 +1,24 @@
 package ge.akakhishvili.messangerapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
-import java.security.MessageDigest
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var signUpButton: Button
-    private lateinit var nicknameEditText : EditText
+    private lateinit var nicknameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var careerEditText: EditText
     private lateinit var auth: FirebaseAuth
+    private var utils: Utils = Utils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,36 +36,39 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initSignUpListeners() {
-        signUpButton.setOnClickListener{
-            var nickname = nicknameEditText.text.toString()
-            var password = passwordEditText.text.toString()
-            var career = careerEditText.text.toString()
+        signUpButton.setOnClickListener {
+            val nickname = nicknameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val career = careerEditText.text.toString()
             validateAndLogin(nickname, password, career)
         }
     }
 
     private fun validateAndLogin(nickname: String, password: String, career: String) {
-        if(nickname.length == 0){
+        if (nickname.length == 0) {
             shortToast("Nickname can't be empty")
             return
         }
-        if(password.length == 0){
+        if (password.length == 0) {
             shortToast("Password can't be empty")
             return
         }
-        if(career.length == 0){
+        if (career.length == 0) {
             shortToast("What I do - can't be empty")
             return
         }
-        auth.createUserWithEmailAndPassword(nicknameToEmailFormat(nickname), hashedPassword(password))
+        val nicknameEmailFormat = utils.nicknameToEmailFormat(nickname)
+        val hashedPassword = utils.hashedPassword(password)
+        auth.createUserWithEmailAndPassword(nicknameEmailFormat, hashedPassword)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     shortToast("registered")
+                    mapCareer(nicknameEmailFormat, career)
                 } else {
-                    if(task.exception!!.message!! == USERNAME_ALREADY_IN_USE){
+                    if (task.exception!!.message!! == USERNAME_ALREADY_IN_USE) {
                         shortToast("Username already exists!")
-                    }else{
+                    } else {
                         shortToast(task.exception!!.message!!)
                     }
                 }
@@ -72,26 +76,30 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+    private fun mapCareer(nicknameEmailFormat: String, career: String) {
+        val database = Firebase.database
+        val profileReference = database.getReference(PROFILES)
+        profileReference.push().key?.let {
+            profileReference.child(it).setValue(
+                UserProfile(nicknameEmailFormat, career)
+            )
+        }
 
-    private fun hashedPassword(password: String): String {
-        val bytes = password.toByteArray()
-        val md = MessageDigest.getInstance("SHA-256")
-        val digest = md.digest(bytes)
-        return digest.fold("", { str, it -> str + "%02x".format(it) })
     }
 
-    private fun nicknameToEmailFormat(nickname: String): String {
-        return nickname + "@mail.com"
-    }
-
-
-
-    private fun shortToast(s: String){
+    private fun shortToast(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
-        val USERNAME_ALREADY_IN_USE: String = "The email address is already in use by another account."
+        const val USERNAME_ALREADY_IN_USE: String =
+            "The email address is already in use by another account."
+        const val PROFILES = "profiles"
     }
-
 }
+
+data class UserProfile(
+    val username: String? = null,
+    val career: String? = null,
+    val picture: String? = null
+)
