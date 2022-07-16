@@ -6,4 +6,16 @@
     <string name="sign_in_button_text">Sign in</string>
     <string name="not_registered_text">Not registered?</string>
     <string name="sign_up_button_text">Sign up</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sign_up_nickname_text">Enter your nickname</string>
+    <string name="sign_up_password_text">Enter your password</string>
+    <string name="sign_up_text">What I do</string>
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <ImageView
+        android:id="@+id/sign_up_profile_image"
+        android:layout_width="@dimen/profile_picture_width"
+        android:layout_height="@dimen/profile_picture_height"
+        android:src="@drawable/avatar_image_placeholder"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/sign_up_nickname_edit_text"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_profile_image"
+        android:layout_marginTop="@dimen/space_between_image_text"
+        android:background="@drawable/login_page_edit_text_background"
+        android:autofillHints="True"
+        android:hint="@string/sign_up_nickname_text"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:id="@+id/sign_up_password_edit_text"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_nickname_edit_text"
+        android:layout_marginTop="@dimen/space_between_edit_texts"
+        android:background="@drawable/login_page_edit_text_background"
+        android:autofillHints="True"
+        android:hint="@string/sign_up_password_text"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/sign_up_career_edit_text"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_password_edit_text"
+        android:background="@drawable/login_page_edit_text_background"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_marginTop="@dimen/space_between_edit_texts"
+        android:hint="@string/sign_up_text"
+        android:autofillHints="True"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/sign_up_page_sign_up_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_button_background"
+        android:text="@string/sign_up_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

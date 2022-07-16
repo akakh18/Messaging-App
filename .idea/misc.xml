@@ -3,10 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/login_button_background.xml" value="0.2425" />
-        <entry key="app/src/main/res/drawable/login_page_button_background.xml" value="0.2425" />
-        <entry key="app/src/main/res/drawable/login_page_edit_text_background.xml" value="0.2425" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_sign_up.xml" value="0.165" />
       </map>
     </option>
   </component>
