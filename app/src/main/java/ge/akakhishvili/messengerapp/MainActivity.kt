@@ -1,7 +1,8 @@
-package ge.akakhishvili.messangerapp
+package ge.akakhishvili.messengerapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ge.akakhishvili.messangerapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
