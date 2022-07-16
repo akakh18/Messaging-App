@@ -18,4 +18,8 @@
     <string name="sign_up_nickname_text">Enter your nickname</string>
     <string name="sign_up_password_text">Enter your password</string>
     <string name="sign_up_text">What I do</string>
+    <string name="messages_profile_image_desc">Profile image</string>
+    <string name="default_message">Some interesting message with certain width</string>
+    <string name="default_name">Name</string>
+    <string name="default_time_str">Time</string>
 </resources>

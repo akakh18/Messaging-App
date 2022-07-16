@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--    Sign in constants-->
     <dimen name="profile_picture_width">200dp</dimen>
     <dimen name="profile_picture_height">200dp</dimen>
     <dimen name="edit_text_width">300dp</dimen>
@@ -8,6 +10,15 @@
     <dimen name="space_between_edit_texts">15dp</dimen>
     <dimen name="sign_in_margin_top">40dp</dimen>
     <dimen name="not_registered_margin_bottom">10dp</dimen>
+
+    <!--    Sign up constants -->
     <dimen name="sign_up_margin_bottom">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!--    Messages constants -->
+    <dimen name="messages_profile_image_width">80dp</dimen>
+    <dimen name="messages_profile_image_height">80dp</dimen>
+    <dimen name="vertical_space_between_name_and_message">20dp</dimen>
+    <dimen name="message_padding_left">20dp</dimen>
+    <dimen name="message_padding_right">20dp</dimen>
 </resources>
