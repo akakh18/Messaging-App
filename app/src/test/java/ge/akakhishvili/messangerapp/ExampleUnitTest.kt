@@ -1,4 +1,4 @@
-package ge.akakhishvili.messengerapp
+package ge.akakhishvili.messangerapp
 
 import org.junit.Test
 

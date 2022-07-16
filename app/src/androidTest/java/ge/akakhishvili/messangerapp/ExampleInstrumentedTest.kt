@@ -1,4 +1,4 @@
-package ge.akakhishvili.messengerapp
+package ge.akakhishvili.messangerapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
