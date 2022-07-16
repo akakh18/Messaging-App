@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".view.SignUpActivity">
 
     <ImageView
         android:id="@+id/sign_up_profile_image"
@@ -43,7 +43,7 @@
         android:background="@drawable/login_page_edit_text_background"
         android:autofillHints="True"
         android:hint="@string/sign_up_password_text"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:maxLines="1"
         android:textAlignment="center"/>
 
