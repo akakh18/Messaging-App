@@ -1,30 +1,27 @@
 package ge.akakhishvili.messangerapp.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.Query
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
 
-class ProfilePageFragment(val activity: MainPageActivity) : Fragment() {
+class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
-    private val utils = Utils()
+    private var auth = Firebase.auth
+
     private lateinit var nicknameEditText: EditText
     private lateinit var careerEditText: EditText
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var signOutButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,27 +34,37 @@ class ProfilePageFragment(val activity: MainPageActivity) : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        nicknameEditText = activity.findViewById(R.id.profile_fragment_nickname)
-        careerEditText = activity.findViewById(R.id.profile_fragment_career)
+        initViews()
+        addListeners()
 
-        auth = Firebase.auth
-        var profilesReferences = Firebase.database.getReference(SignUpActivity.PROFILES)
+        val profilesReferences = Firebase.database.getReference(SignUpActivity.PROFILES)
 
         profilesReferences.child(auth.currentUser!!.uid).get().addOnSuccessListener {
-            var currentUser = it.value as HashMap<String, String>
-            var name = currentUser.get("username")
-            var career = currentUser.get("career")
+            val currentUser = it.value as HashMap<String, String>
+            val name = currentUser["username"]
+            val career = currentUser["career"]
             nicknameEditText.setText(name)
             careerEditText.setText(career)
 
 
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Toast.makeText(requireContext(), "Can't fetch user data", Toast.LENGTH_SHORT).show()
         }
 
     }
 
+    private fun initViews() {
+        nicknameEditText = activity.findViewById(R.id.profile_fragment_nickname)
+        careerEditText = activity.findViewById(R.id.profile_fragment_career)
+        signOutButton = activity.findViewById(R.id.profile_fragment_sign_out_button)
+    }
 
-
+    private fun addListeners() {
+        signOutButton.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }
