@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/profile_oval_background.xml" value="0.1505" />
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_profile.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_profile_page.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/drawable/login_button_background.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/login_page_button_background.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/login_page_edit_text_background.xml" value="0.2425" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profile_page.xml" value="0.340625" />
+        <entry key="app/src/main/res/layout/message.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>

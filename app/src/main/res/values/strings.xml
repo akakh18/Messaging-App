@@ -22,4 +22,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_out_button_text">SIGN OUT</string>
+    <string name="messages_profile_image_desc">Profile image</string>
+    <string name="default_message">Some interesting message with certain width</string>
+    <string name="default_name">Name</string>
+    <string name="default_time_str">Time</string>
 </resources>
