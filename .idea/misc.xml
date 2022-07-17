@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_main_page.xml" value="0.1" />
         <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_message_list.xml" value="0.25" />
+        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_profile_page.xml" value="0.13601823708206687" />
         <entry key="app/src/main/res/drawable/login_button_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/login_page_button_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/login_page_edit_text_background.xml" value="0.2425" />
