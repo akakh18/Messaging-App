@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="edit_text_color">#E5ECED</color>
     <color name="sky_backgrounds">#5269EC</color>
+    <color name="waiting_button_color">#5A82A1</color>
 </resources>
