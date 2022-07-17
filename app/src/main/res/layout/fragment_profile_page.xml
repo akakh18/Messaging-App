@@ -72,9 +72,7 @@
             android:layout_marginTop="@dimen/space_between_update_sign_out_buttons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_fragment_update_button" />.
-
-
+            app:layout_constraintTop_toBottomOf="@+id/profile_fragment_update_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

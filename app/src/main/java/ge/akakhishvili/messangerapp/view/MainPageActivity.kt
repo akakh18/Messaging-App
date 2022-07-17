@@ -1,12 +1,10 @@
 package ge.akakhishvili.messangerapp.view
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.transition.Visibility
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.appbar.AppBarLayout
 import ge.akakhishvili.messangerapp.R
 
 class MainPageActivity : AppCompatActivity() {
@@ -15,7 +13,7 @@ class MainPageActivity : AppCompatActivity() {
 
     private lateinit var homeButtonView: AppCompatImageView
     private lateinit var settingsButtonView: AppCompatImageView
-    private lateinit var topBar: AppBarLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,30 +25,39 @@ class MainPageActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.main_pages_fragments_container)
         homeButtonView = findViewById(R.id.main_page_home_button)
         settingsButtonView = findViewById(R.id.main_page_settings_button)
-//        topBar = findViewById(R.id.main_page_top_bar)
 
 
-        viewPager.adapter = ViewPagerAdapter(this, arrayListOf(MessageListFragment(), ProfilePageFragment(this)))
+        viewPager.adapter =
+            ViewPagerAdapter(this, arrayListOf(MessageListFragment(), ProfilePageFragment(this)))
 
-        homeButtonView.setOnClickListener{
+        homeButtonView.setOnClickListener {
             viewPager.setCurrentItem(0, true)
         }
-        
+
         settingsButtonView.setOnClickListener {
             viewPager.setCurrentItem(1, true)
         }
 
-//        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                super.onPageSelected(position)
-//                if (position == 1) {
-//                    findViewById<AppBarLayout>(R.id.main_page_top_bar).visibility = View.GONE
-//                }
-//                if (position == 0) {
-//                    findViewById<AppBarLayout>(R.id.main_page_top_bar).visibility = View.VISIBLE
-//                }
-//            }
-//        })
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == 1) {
+                    colorIcons(R.color.black, R.color.selected_fragment_icon_color)
+                }
+                if (position == 0) {
+                    colorIcons(R.color.selected_fragment_icon_color, R.color.black)
+                }
+            }
+        })
 
+    }
+
+    private fun colorButton(button: AppCompatImageView, color: Int) {
+        button.setColorFilter(ContextCompat.getColor(baseContext, color))
+    }
+
+    private fun colorIcons(homeButtonColor: Int, settingsButtonColor: Int) {
+        colorButton(homeButtonView, homeButtonColor)
+        colorButton(settingsButtonView, settingsButtonColor)
     }
 }
