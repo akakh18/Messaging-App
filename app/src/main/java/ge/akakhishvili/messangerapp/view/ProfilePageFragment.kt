@@ -1,23 +1,26 @@
 package ge.akakhishvili.messangerapp.view
 
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.Query
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ProfilePageFragment(val activity: MainPageActivity) : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfilePageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ProfilePageFragment : Fragment() {
+    private lateinit var auth: FirebaseAuth
+    private val utils = Utils()
+    private lateinit var nicknameEditText: EditText
+    private lateinit var careerEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +33,31 @@ class ProfilePageFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_page, container, false)
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        nicknameEditText = activity.findViewById(R.id.profile_fragment_nickname)
+        careerEditText = activity.findViewById(R.id.profile_fragment_career)
+
+        auth = Firebase.auth
+        var profilesReferences = Firebase.database.getReference(SignUpActivity.PROFILES)
+
+        profilesReferences.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+            var currentUser = it.value as HashMap<String, String>
+            var name = currentUser.get("username")
+            var career = currentUser.get("career")
+            nicknameEditText.setText(name)
+            careerEditText.setText(career)
+
+
+        }.addOnFailureListener{
+            Toast.makeText(requireContext(), "Can't fetch user data", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+
+
 
 }

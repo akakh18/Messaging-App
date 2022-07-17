@@ -57,10 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun shortToast(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
-    }
-
     private fun initButtonActions() {
         signUpButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)

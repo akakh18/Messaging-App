@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -66,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     shortToast("registered")
-                    mapCareer(nickname, career)
+                    mapCareer(user!!, nickname, career)
                     openHomePage()
                 } else {
                     if (task.exception!!.message!! == USERNAME_ALREADY_IN_USE) {
@@ -84,10 +85,10 @@ class SignUpActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun mapCareer(nickname: String, career: String) {
+    private fun mapCareer(user: FirebaseUser, nickname: String, career: String) {
         val database = Firebase.database
         val profileReference = database.getReference(PROFILES)
-        profileReference.child(nickname).setValue(UserProfile(nickname, career))
+        profileReference.child(user.uid).setValue(UserProfile(nickname, career))
     }
 
     private fun shortToast(s: String) {

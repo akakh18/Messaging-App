@@ -30,7 +30,7 @@ class MainPageActivity : AppCompatActivity() {
 //        topBar = findViewById(R.id.main_page_top_bar)
 
 
-        viewPager.adapter = ViewPagerAdapter(this, arrayListOf(MessageListFragment(), ProfilePageFragment()))
+        viewPager.adapter = ViewPagerAdapter(this, arrayListOf(MessageListFragment(), ProfilePageFragment(this)))
 
         homeButtonView.setOnClickListener{
             viewPager.setCurrentItem(0, true)

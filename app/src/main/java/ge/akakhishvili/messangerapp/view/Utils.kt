@@ -1,5 +1,7 @@
 package ge.akakhishvili.messangerapp.view
 
+import android.widget.Toast
+import com.google.firebase.database.core.Context
 import java.security.MessageDigest
 
 class Utils {
@@ -13,4 +15,9 @@ class Utils {
     public fun nicknameToEmailFormat(nickname: String): String {
         return nickname + "@mail.com"
     }
+
+    public fun getNicknameFromEmailFormat(email: String): String{
+        return email.split('@')[0]
+    }
+
 }
