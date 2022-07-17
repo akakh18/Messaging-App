@@ -1,5 +1,6 @@
 package ge.akakhishvili.messangerapp.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -66,6 +67,7 @@ class SignUpActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     shortToast("registered")
                     mapCareer(nickname, career)
+                    openHomePage()
                 } else {
                     if (task.exception!!.message!! == USERNAME_ALREADY_IN_USE) {
                         shortToast("Username already exists!")
@@ -75,6 +77,11 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    private fun openHomePage() {
+        val intent = Intent(this, MainPageActivity::class.java)
+        startActivity(intent)
     }
 
     private fun mapCareer(nickname: String, career: String) {

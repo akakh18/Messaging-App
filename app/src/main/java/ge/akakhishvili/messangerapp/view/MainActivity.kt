@@ -13,8 +13,6 @@ import ge.akakhishvili.messangerapp.R
 
 
 class MainActivity : AppCompatActivity() {
-
-
     private var auth: FirebaseAuth = Firebase.auth
     private lateinit var signInButton: Button
     private lateinit var signUpButton: Button
@@ -26,8 +24,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth.signOut()
         if (auth.currentUser != null) {
-            shortToast("Transferred to main page")
+            openMainPage()
         }
         initViews()
         initButtonActions()
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-
         nicknameEditText = findViewById(R.id.nickname_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
         signInButton = findViewById(R.id.sign_in_button)
@@ -49,11 +47,7 @@ class MainActivity : AppCompatActivity() {
         ).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
-                Toast.makeText(
-                    this,
-                    "Signed in",
-                    Toast.LENGTH_LONG
-                ).show()
+                openMainPage()
             } else {
                 Toast.makeText(
                     this,
@@ -77,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             login()
         }
+    }
+
+    private fun openMainPage(){
+        val intent = Intent(this, MainPageActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {
