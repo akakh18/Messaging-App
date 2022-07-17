@@ -32,10 +32,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        signUpButton = findViewById<Button>(R.id.sign_up_page_sign_up_button)
-        nicknameEditText = findViewById<EditText>(R.id.sign_up_nickname_edit_text)
-        passwordEditText = findViewById<EditText>(R.id.sign_up_password_edit_text)
-        careerEditText = findViewById<EditText>(R.id.sign_up_career_edit_text)
+        signUpButton = findViewById(R.id.sign_up_page_sign_up_button)
+        nicknameEditText = findViewById(R.id.sign_up_nickname_edit_text)
+        passwordEditText = findViewById(R.id.sign_up_password_edit_text)
+        careerEditText = findViewById(R.id.sign_up_career_edit_text)
     }
 
     private fun initSignUpListeners() {
@@ -48,15 +48,15 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun validateAndLogin(nickname: String, password: String, career: String) {
-        if (nickname.length == 0) {
+        if (nickname.isEmpty()) {
             shortToast("Nickname can't be empty")
             return
         }
-        if (password.length == 0) {
+        if (password.isEmpty()) {
             shortToast("Password can't be empty")
             return
         }
-        if (career.length == 0) {
+        if (career.isEmpty()) {
             shortToast("What I do - can't be empty")
             return
         }
@@ -87,7 +87,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun mapCareer(user: FirebaseUser, nickname: String, career: String) {
         val database = Firebase.database
-        val profileReference = database.getReference(PROFILES)
+        val profileReference = database.getReference(DatabaseConstants.PROFILES)
         profileReference.child(user.uid).setValue(UserProfile(nickname, career))
     }
 
@@ -98,7 +98,6 @@ class SignUpActivity : AppCompatActivity() {
     companion object {
         const val USERNAME_ALREADY_IN_USE: String =
             "The email address is already in use by another account."
-        const val PROFILES = "profiles"
     }
 }
 
