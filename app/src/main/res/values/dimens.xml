@@ -10,4 +10,6 @@
     <dimen name="not_registered_margin_bottom">10dp</dimen>
     <dimen name="sign_up_margin_bottom">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="space_between_update_button_edit_text">40dp</dimen>
+    <dimen name="space_between_update_sign_out_buttons">40dp</dimen>
 </resources>

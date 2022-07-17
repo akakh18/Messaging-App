@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ProfilePageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/change_photo"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_width="@dimen/profile_picture_width"
+            android:layout_height="@dimen/profile_picture_height"
+            android:background="@drawable/profile_oval_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_image_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/profile_fragment_nickname"
+            android:layout_width="@dimen/edit_text_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_page_edit_text_background"
+            android:hint=""
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/space_between_image_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/change_photo" />
+
+        <EditText
+            android:id="@+id/profile_fragment_career"
+            android:layout_width="@dimen/edit_text_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_page_edit_text_background"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/space_between_edit_texts"
+            app:layout_constraintTop_toBottomOf="@+id/profile_fragment_nickname" />
+
+
+        <Button
+            android:id="@+id/profile_fragment_update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_button_text"
+            android:background="@drawable/login_page_edit_text_background"
+            android:layout_marginTop="@dimen/space_between_update_button_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_fragment_career" />
+
+        <Button
+            android:id="@+id/profile_fragment_sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_page_edit_text_background"
+            android:text="@string/sign_out_button_text"
+            android:layout_marginTop="@dimen/space_between_update_sign_out_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_fragment_update_button" />.
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
