@@ -1,18 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MainPageActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+    <!--    Top toolbar-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_layout_full_height"
+        android:background="@color/sky_backgrounds"
+        app:contentScrim="@color/sky_backgrounds"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sky_backgrounds"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:contentScrim="@color/sky_backgrounds"
+            android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:src="@drawable/background"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+
+            <androidx.appcompat.widget.Toolbar
+                app:expanded="true"
+                android:layout_marginTop="@dimen/top_toolbar_margin_top"
+                android:layout_marginBottom="@dimen/top_toolbar_margin_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_toolbar_height"
+                android:layout_gravity="bottom"
+                app:layout_collapseMode="pin"
+                android:fitsSystemWindows="true"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/messages_fragment_searchbar_height"
+                    android:layout_marginStart="@dimen/searchbar_margin_start"
+                    android:layout_marginEnd="@dimen/searchbar_margin_end"
+                    app:layout_collapseMode="pin"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:fitsSystemWindows="true">
+
+                    <ImageView
+                        android:layout_width="@dimen/search_icon_width"
+                        android:layout_height="@dimen/search_icon_height"
+                        android:layout_marginStart="@dimen/search_icon_margin_start"
+                        android:src="@drawable/search"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/teal_700"
+                        android:contentDescription="@string/search_desc" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/search_hint"
+                        android:inputType="text"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:autofillHints="True"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <!--    Messages list-->
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/main_pages_fragments_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <!--    Bottom toolbar-->
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:hideOnScroll="true"
+        app:backgroundTint="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/bottom_toolbar_icon_size"
+                    android:layout_height="@dimen/bottom_toolbar_icon_size"
+                    android:src="@drawable/home_icon"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/bottom_toolbar_icon_size"
+                    android:layout_height="@dimen/bottom_toolbar_icon_size"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/settings_icon" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:backgroundTint="@color/purple_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HI"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/plus_icon"
+        app:layout_anchor="@id/bottom_toolbar"
+        app:tint="@android:color/white"
+        android:contentDescription="@string/plus_button_desc" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

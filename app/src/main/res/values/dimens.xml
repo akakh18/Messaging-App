@@ -23,4 +23,15 @@
     <dimen name="message_padding_right">20dp</dimen>
     <dimen name="space_between_update_button_edit_text">40dp</dimen>
     <dimen name="space_between_update_sign_out_buttons">40dp</dimen>
+    <dimen name="top_toolbar_margin_top">10dp</dimen>
+    <dimen name="top_toolbar_margin_bottom">10dp</dimen>
+    <dimen name="top_toolbar_height">70dp</dimen>
+    <dimen name="top_layout_full_height">120dp</dimen>
+    <dimen name="messages_fragment_searchbar_height">50dp</dimen>
+    <dimen name="searchbar_margin_start">20dp</dimen>
+    <dimen name="searchbar_margin_end">20dp</dimen>
+    <dimen name="search_icon_width">30dp</dimen>
+    <dimen name="search_icon_height">20dp</dimen>
+    <dimen name="search_icon_margin_start">20dp</dimen>
+    <dimen name="bottom_toolbar_icon_size">20dp</dimen>
 </resources>

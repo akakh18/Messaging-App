@@ -26,4 +26,7 @@
     <string name="default_message">Some interesting message with certain width</string>
     <string name="default_name">Name</string>
     <string name="default_time_str">Time</string>
+    <string name="search_hint">Search</string>
+    <string name="search_desc">Search</string>
+    <string name="plus_button_desc">Plus button</string>
 </resources>
