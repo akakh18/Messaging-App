@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             shortToast("Transferred to main page")
         }
-
         initViews()
         initButtonActions()
 

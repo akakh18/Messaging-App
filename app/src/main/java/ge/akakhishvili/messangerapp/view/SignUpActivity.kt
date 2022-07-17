@@ -65,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     shortToast("registered")
-                    mapCareer(nicknameEmailFormat, career)
+                    mapCareer(nickname, career)
                 } else {
                     if (task.exception!!.message!! == USERNAME_ALREADY_IN_USE) {
                         shortToast("Username already exists!")
@@ -77,15 +77,10 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    private fun mapCareer(nicknameEmailFormat: String, career: String) {
+    private fun mapCareer(nickname: String, career: String) {
         val database = Firebase.database
         val profileReference = database.getReference(PROFILES)
-        profileReference.push().key?.let {
-            profileReference.child(it).setValue(
-                UserProfile(nicknameEmailFormat, career)
-            )
-        }
-
+        profileReference.child(nickname).setValue(UserProfile(nickname, career))
     }
 
     private fun shortToast(s: String) {
