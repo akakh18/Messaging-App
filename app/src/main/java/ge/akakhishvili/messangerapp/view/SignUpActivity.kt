@@ -67,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     shortToast("registered")
-                    mapCareer(user!!, nickname, career)
+                    uploadUserData(user!!, nickname, career)
                     auth.signInWithEmailAndPassword(nicknameEmailFormat, hashedPassword)
                     openHomePage()
                 } else {
@@ -86,10 +86,10 @@ class SignUpActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun mapCareer(user: FirebaseUser, nickname: String, career: String) {
+    private fun uploadUserData(user: FirebaseUser, nickname: String, career: String) {
         val database = Firebase.database
         val profileReference = database.getReference(DatabaseConstants.PROFILES)
-        profileReference.child(user.uid).setValue(UserProfile(nickname, career))
+        profileReference.child(user.uid).setValue(UserProfile(nickname, career, false))
     }
 
     private fun shortToast(s: String) {
@@ -105,5 +105,5 @@ class SignUpActivity : AppCompatActivity() {
 data class UserProfile(
     val username: String? = null,
     val career: String? = null,
-    val picture: String? = null
+    val hasProfilePicture: Boolean? = null
 )

@@ -2,6 +2,7 @@ package ge.akakhishvili.messangerapp.view
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +13,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import ge.akakhishvili.messangerapp.R
+import java.io.File
 
 
 class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
@@ -37,6 +40,7 @@ class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
 
     private var changedPhotoFilepath: Uri? = null
 
+    private var userHasImage: Boolean? = null
 
 
     override fun onCreateView(
@@ -59,8 +63,19 @@ class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
             val currentUser = it.value as HashMap<String, String>
             val name = currentUser["username"]
             val career = currentUser["career"]
+            val hasProfilePhoto = currentUser["hasProfilePicture"] as Boolean
+            userHasImage = hasProfilePhoto
             nicknameEditText.setText(name)
             careerEditText.setText(career)
+            if(hasProfilePhoto){
+                var ref = storageReference.child("images/profile_image_" + auth.currentUser!!.uid)
+                var localfile = File.createTempFile("tempimage", "jpg")
+                ref.getFile(localfile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                    changeImageView.setImageBitmap(bitmap)
+                }
+
+            }
         }.addOnFailureListener {
             Toast.makeText(requireContext(), "Can't fetch user data", Toast.LENGTH_SHORT).show()
         }
@@ -108,19 +123,6 @@ class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
         }
     }
 
-    private fun uploadImage(){
-        if(changedPhotoFilepath != null){
-            var ref = storageReference.child("images/profile_image_" + auth.currentUser!!.uid)
-
-            ref.putFile(changedPhotoFilepath!!).addOnCompleteListener{
-                if(it.isSuccessful){
-                    println("success")
-                }else{
-                    println("fail")
-                }
-            }
-        }
-    }
 
     private fun updateData(nickname: String, career: String) {
         val user = Firebase.auth.currentUser
@@ -129,15 +131,32 @@ class ProfilePageFragment(private val activity: MainPageActivity) : Fragment() {
                 if (!task.isSuccessful) {
                     Toast.makeText(activity, "Sign in again to make updates", Toast.LENGTH_SHORT)
                         .show()
+                }else{
+                    updateProfileDataAndPicture(nickname, career)
                 }
             }
+    }
 
-        val profilesReference = Firebase.database.getReference(DatabaseConstants.PROFILES)
-        profilesReference.child(auth.currentUser!!.uid)
-            .setValue(UserProfile(username = nickname, career = career))
-
-        uploadImage()
-
+    private fun updateProfileDataAndPicture(nickname: String, career: String) {
+        if(changedPhotoFilepath != null){
+            var ref = storageReference.child("images/profile_image_" + auth.currentUser!!.uid)
+            ref.putFile(changedPhotoFilepath!!).addOnCompleteListener{
+                if(it.isSuccessful){
+                    val profilesReference = Firebase.database.getReference(DatabaseConstants.PROFILES)
+                    profilesReference.child(auth.currentUser!!.uid)
+                        .setValue(UserProfile(username = nickname, career = career, hasProfilePicture = true))
+                    userHasImage = true
+                    Toast.makeText(context, "User profile updated With Image", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(context, "Profile picture was not updated - error", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }else{
+            val profilesReference = Firebase.database.getReference(DatabaseConstants.PROFILES)
+            profilesReference.child(auth.currentUser!!.uid)
+                .setValue(UserProfile(username = nickname, career = career, hasProfilePicture = userHasImage))
+            Toast.makeText(context, "User profile updated Without Image", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object{

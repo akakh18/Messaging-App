@@ -15,7 +15,6 @@
             android:layout_marginTop="@dimen/margin_top"
             android:layout_width="@dimen/profile_picture_width"
             android:layout_height="@dimen/profile_picture_height"
-            android:background="@drawable/profile_oval_background"
             android:scaleType="centerCrop"
             android:src="@drawable/avatar_image_placeholder"
             app:layout_constraintEnd_toEndOf="parent"
