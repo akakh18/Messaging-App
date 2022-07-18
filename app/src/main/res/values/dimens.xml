@@ -40,4 +40,8 @@
     <dimen name="bottom_toolbar_icon_size">20dp</dimen>
     <dimen name="no_messages_text_size">30sp</dimen>
     <dimen name="progress_bar_margin_top">200dp</dimen>
+    <dimen name="user_search_item_padding">15dp</dimen>
+    <dimen name="left_padding">20dp</dimen>
+    <dimen name="user_search_item_image_size">50dp</dimen>
+    <dimen name="user_search_item_nickname_size">16sp</dimen>
 </resources>

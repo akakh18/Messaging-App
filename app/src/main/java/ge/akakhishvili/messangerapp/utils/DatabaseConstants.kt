@@ -1,4 +1,4 @@
-package ge.akakhishvili.messangerapp.view
+package ge.akakhishvili.messangerapp.utils
 
 class DatabaseConstants {
     companion object {

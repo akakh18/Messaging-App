@@ -65,11 +65,12 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_page_bottom_toolbar_search_button"
+        app:layout_anchor="@id/bottom_toolbar"
         android:backgroundTint="@color/purple_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/plus_icon"
-        app:layout_anchor="@id/bottom_toolbar"
         app:tint="@android:color/white"
         android:contentDescription="@string/plus_button_desc" />
 

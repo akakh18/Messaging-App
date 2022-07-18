@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
+import ge.akakhishvili.messangerapp.utils.Utils
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package ge.akakhishvili.messangerapp.view
+package ge.akakhishvili.messangerapp.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

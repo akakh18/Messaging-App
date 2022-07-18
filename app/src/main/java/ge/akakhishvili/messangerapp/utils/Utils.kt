@@ -1,7 +1,5 @@
-package ge.akakhishvili.messangerapp.view
+package ge.akakhishvili.messangerapp.utils
 
-import android.widget.Toast
-import com.google.firebase.database.core.Context
 import java.security.MessageDigest
 
 class Utils {

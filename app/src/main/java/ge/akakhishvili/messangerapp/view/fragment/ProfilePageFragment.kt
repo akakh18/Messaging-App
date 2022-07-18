@@ -1,4 +1,4 @@
-package ge.akakhishvili.messangerapp.view
+package ge.akakhishvili.messangerapp.view.fragment
 
 import android.app.Activity
 import android.content.Intent
@@ -13,12 +13,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import ge.akakhishvili.messangerapp.R
+import ge.akakhishvili.messangerapp.utils.DatabaseConstants
+import ge.akakhishvili.messangerapp.utils.Utils
+import ge.akakhishvili.messangerapp.view.*
 import java.io.File
 
 
