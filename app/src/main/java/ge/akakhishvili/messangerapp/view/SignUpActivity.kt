@@ -68,6 +68,7 @@ class SignUpActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     shortToast("registered")
                     mapCareer(user!!, nickname, career)
+                    auth.signInWithEmailAndPassword(nicknameEmailFormat, hashedPassword)
                     openHomePage()
                 } else {
                     if (task.exception!!.message!! == USERNAME_ALREADY_IN_USE) {
