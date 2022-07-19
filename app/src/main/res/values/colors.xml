@@ -11,4 +11,5 @@
     <color name="sky_backgrounds">#5269EC</color>
     <color name="waiting_button_color">#5A82A1</color>
     <color name="selected_fragment_icon_color">#0027FF</color>
+    <color name="chat_page_top_bar_blue">#5476E4</color>
 </resources>

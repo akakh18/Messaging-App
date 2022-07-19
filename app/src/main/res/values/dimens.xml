@@ -44,4 +44,11 @@
     <dimen name="left_padding">20dp</dimen>
     <dimen name="user_search_item_image_size">50dp</dimen>
     <dimen name="user_search_item_nickname_size">16sp</dimen>
+    <dimen name="chat_page_top_bar_height">150dp</dimen>
+    <dimen name="chat_page_back_button_size">30dp</dimen>
+    <dimen name="chat_page_toolbar_height">100dp</dimen>
+    <dimen name="inside_layout_height">70dp</dimen>
+    <dimen name="chat_page_sender_name_text_size">30dp</dimen>
+    <dimen name="chat_page_sender_career_text_size">15sp</dimen>
+    <dimen name="char_page_top_margin_size">10dp</dimen>
 </resources>

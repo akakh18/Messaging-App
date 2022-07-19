@@ -30,4 +30,5 @@
     <string name="search_desc">Search</string>
     <string name="plus_button_desc">Plus button</string>
     <string name="no_messages">no messages</string>
+    <string name="message_box_hint_text">Message</string>
 </resources>
