@@ -2,7 +2,6 @@ package ge.akakhishvili.messangerapp.service
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import ge.akakhishvili.messangerapp.view.UserProfile
 import ge.akakhishvili.messangerapp.view.`interface`.IUserSearchView
 
 
@@ -11,18 +10,20 @@ class UserSearchService(var userSearchView: IUserSearchView) {
 
     fun findUsersLike(nicknameSearchString: String) {
 
-        var searchedProfiles = arrayListOf<UserProfileWithId>()
+        val searchedProfiles = arrayListOf<UserProfileWithId>()
 
-        var profilesRef = database.getReference("profiles")
+        val profilesRef = database.getReference("profiles")
         profilesRef.get().addOnSuccessListener {
-            var data = it.value as HashMap<String, HashMap<String, String>>
-            for((key, userProfile) in data){
-                if(userProfile["username"]!!.contains(nicknameSearchString)){
-                    var newProfile =
-                        UserProfileWithId(userProfile["username"]!!,
-                                    userProfile["career"]!!,
-                                    userProfile["hasProfilePicture"]!! as Boolean?,
-                                    key)
+            val data = it.value as HashMap<String, HashMap<String, String>>
+            for ((key, userProfile) in data) {
+                if (userProfile["username"]!!.contains(nicknameSearchString)) {
+                    val newProfile =
+                        UserProfileWithId(
+                            userProfile["username"]!!,
+                            userProfile["career"]!!,
+                            userProfile["hasProfilePicture"]!! as Boolean?,
+                            key
+                        )
                     searchedProfiles.add(newProfile)
                 }
             }
@@ -32,7 +33,9 @@ class UserSearchService(var userSearchView: IUserSearchView) {
     }
 }
 
-data class UserProfileWithId(val username: String? = null,
-                             val career: String? = null,
-                             val hasProfilePicture: Boolean? = null,
-                             val userId: String? = null)
+data class UserProfileWithId(
+    val username: String? = null,
+    val career: String? = null,
+    val hasProfilePicture: Boolean? = null,
+    val userId: String? = null
+)

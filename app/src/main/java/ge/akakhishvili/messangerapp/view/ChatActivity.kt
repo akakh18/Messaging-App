@@ -5,11 +5,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
 import ge.akakhishvili.messangerapp.adapter.MessagesAdapter
 import ge.akakhishvili.messangerapp.service.ChatService
+import ge.akakhishvili.messangerapp.service.Message
 
 class ChatActivity : AppCompatActivity() {
 
@@ -17,11 +20,15 @@ class ChatActivity : AppCompatActivity() {
 
     private lateinit var messageInputText: EditText
     private lateinit var sendMessageButton: ImageView
+    private lateinit var messagesRecyclerView: RecyclerView
+    private lateinit var noMessagesView: TextView
     private lateinit var activeUserId: String
     private lateinit var receiverUserId: String
     private lateinit var receiverUsername: String
     private lateinit var receiverCareer: String
     private lateinit var messagesAdapter: MessagesAdapter
+
+    private lateinit var messagesList: ArrayList<Message>
 
     private lateinit var chatService: ChatService
 
@@ -33,9 +40,14 @@ class ChatActivity : AppCompatActivity() {
         receiverUsername = intent.getStringExtra("receiverUsername").toString()
         receiverCareer = intent.getStringExtra("receiverCareer").toString()
 
-        chatService = ChatService()
+        messagesList = arrayListOf()
 
         initViews()
+
+        chatService =
+            ChatService(messagesAdapter, messagesList, noMessagesView, messagesRecyclerView)
+        chatService.getMessagesFor(receiverUserId, activeUserId)
+
         addListeners()
     }
 
@@ -50,9 +62,16 @@ class ChatActivity : AppCompatActivity() {
     private fun initViews() {
         messageInputText = findViewById(R.id.chat_page_message_input_text)
         sendMessageButton = findViewById(R.id.chat_page_send_message_button)
+        noMessagesView = findViewById(R.id.chat_no_messages_textview)
+        messagesRecyclerView = findViewById(R.id.chat_page_messages_recycler_view)
+
+        messagesAdapter = MessagesAdapter(messagesList, this)
+        messagesRecyclerView.adapter = messagesAdapter
+        messagesRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         findViewById<TextView>(R.id.chat_page_reicever_name).setText(receiverUsername)
         findViewById<TextView>(R.id.chat_page_receiver_career).setText(receiverCareer)
+
 
     }
 

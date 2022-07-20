@@ -38,6 +38,7 @@
                     android:layout_height="@dimen/chat_page_toolbar_height"
                     android:layout_gravity="bottom"
                     app:layout_collapseMode="pin">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -115,21 +117,22 @@
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/left_padding"
                 android:paddingRight="@dimen/left_padding"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/chat_no_messages_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="@dimen/left_padding"
                     android:text="@string/no_messages"
                     android:textSize="@dimen/no_messages_text_size"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
             </ScrollView>
 
         </LinearLayout>
@@ -178,7 +181,7 @@
                 android:src="@mipmap/circle_image_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+                app:layout_constraintTop_toTopOf="parent">
 
             </ImageView>
         </LinearLayout>
