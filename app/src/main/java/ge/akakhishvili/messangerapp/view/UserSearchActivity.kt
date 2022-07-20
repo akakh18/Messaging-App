@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ge.akakhishvili.messangerapp.R
 import ge.akakhishvili.messangerapp.adapter.UserSearchAdapter
+import ge.akakhishvili.messangerapp.service.UserProfileWithId
 import ge.akakhishvili.messangerapp.service.UserSearchService
 import ge.akakhishvili.messangerapp.view.`interface`.IUserSearchView
 
@@ -17,7 +18,7 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
     private lateinit var userSearchEditText: EditText
     private lateinit var usersRecyclerView: RecyclerView
 
-    private lateinit var userProfilesList: ArrayList<UserProfile>
+    private lateinit var userProfilesList: ArrayList<UserProfileWithId>
     private lateinit var userSearchAdapter: UserSearchAdapter
 
     private lateinit var userSearchService: UserSearchService
@@ -60,7 +61,7 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
         usersRecyclerView = findViewById(R.id.user_search_users_recycler_view)
     }
 
-    override fun loadUsers(profiles: List<UserProfile>) {
+    override fun loadUsers(profiles: List<UserProfileWithId>) {
         userProfilesList.clear()
         userProfilesList.addAll(profiles)
         userSearchAdapter.notifyDataSetChanged()

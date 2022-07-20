@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MessangerApp"
         tools:targetApi="31">
         <activity
-            android:name=".ChatActivity"
+            android:name=".view.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".view.UserSearchActivity"

@@ -11,14 +11,18 @@ class UserSearchService(var userSearchView: IUserSearchView) {
 
     fun findUsersLike(nicknameSearchString: String) {
 
-        var searchedProfiles = arrayListOf<UserProfile>()
+        var searchedProfiles = arrayListOf<UserProfileWithId>()
 
         var profilesRef = database.getReference("profiles")
         profilesRef.get().addOnSuccessListener {
             var data = it.value as HashMap<String, HashMap<String, String>>
             for((key, userProfile) in data){
                 if(userProfile["username"]!!.contains(nicknameSearchString)){
-                    var newProfile = UserProfile(userProfile["username"]!!, userProfile["career"]!!, userProfile["hasProfilePicture"]!! as Boolean?)
+                    var newProfile =
+                        UserProfileWithId(userProfile["username"]!!,
+                                    userProfile["career"]!!,
+                                    userProfile["hasProfilePicture"]!! as Boolean?,
+                                    key)
                     searchedProfiles.add(newProfile)
                 }
             }
@@ -27,3 +31,8 @@ class UserSearchService(var userSearchView: IUserSearchView) {
 
     }
 }
+
+data class UserProfileWithId(val username: String? = null,
+                             val career: String? = null,
+                             val hasProfilePicture: Boolean? = null,
+                             val userId: String? = null)
