@@ -6,13 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".view.UserSearchActivity">
 
-    <EditText
-        android:id="@+id/user_search_search_edit_text"
+    <LinearLayout
+        android:id="@+id/user_search_top_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/search_users_toolbar_height"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/sky_backgrounds">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_users_searchbar_height"
+            android:layout_marginTop="@dimen/search_users_search_marginTop"
+            android:layout_marginStart="@dimen/searchbar_margin_start"
+            android:layout_marginEnd="@dimen/searchbar_margin_end"
+            app:layout_collapseMode="pin"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:fitsSystemWindows="true"
+            android:background="@drawable/search_background">
+
+            <ImageView
+                android:layout_width="@dimen/search_icon_width"
+                android:layout_height="@dimen/search_icon_height"
+                android:layout_marginStart="@dimen/search_icon_margin_start"
+                android:src="@drawable/search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/teal_700"
+                android:contentDescription="@string/search_desc" />
+
+            <EditText
+                android:id="@+id/user_search_search_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:hint="@string/search_hint"
+                android:inputType="text"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:autofillHints="True"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_search_users_recycler_view"
@@ -20,6 +66,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_search_search_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/user_search_top_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

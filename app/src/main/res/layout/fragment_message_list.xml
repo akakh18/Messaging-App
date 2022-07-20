@@ -48,10 +48,10 @@
                     android:layout_marginStart="@dimen/searchbar_margin_start"
                     android:layout_marginEnd="@dimen/searchbar_margin_end"
                     app:layout_collapseMode="pin"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:fitsSystemWindows="true">
+                    android:gravity="center_vertical"
+                    android:fitsSystemWindows="true"
+                    android:background="@drawable/search_background">
 
                     <ImageView
                         android:layout_width="@dimen/search_icon_width"
@@ -95,12 +95,12 @@
         app:layout_constraintTop_toBottomOf="@+id/message_list_layout">
 
     </androidx.recyclerview.widget.RecyclerView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messages_loader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        >
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/no_message_text_view"
@@ -112,7 +112,7 @@
             android:textSize="@dimen/no_messages_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/no_message_loading_progress_bar"
