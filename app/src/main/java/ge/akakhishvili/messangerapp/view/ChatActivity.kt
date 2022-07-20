@@ -1,13 +1,14 @@
 package ge.akakhishvili.messangerapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
+import ge.akakhishvili.messangerapp.adapter.MessagesAdapter
 import ge.akakhishvili.messangerapp.service.ChatService
 
 class ChatActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var receiverUserId: String
     private lateinit var receiverUsername: String
     private lateinit var receiverCareer: String
+    private lateinit var messagesAdapter: MessagesAdapter
 
     private lateinit var chatService: ChatService
 
@@ -38,9 +40,10 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun addListeners() {
-        sendMessageButton.setOnClickListener{
-            var messageText = messageInputText.text.toString()
+        sendMessageButton.setOnClickListener {
+            val messageText = messageInputText.text.toString()
             chatService.sendMessage(activeUserId, receiverUserId, messageText)
+            messageInputText.setText("")
         }
     }
 
@@ -51,5 +54,9 @@ class ChatActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.chat_page_reicever_name).setText(receiverUsername)
         findViewById<TextView>(R.id.chat_page_receiver_career).setText(receiverCareer)
 
+    }
+
+    fun getActiveUserId(): String {
+        return activeUserId
     }
 }
