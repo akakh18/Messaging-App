@@ -62,7 +62,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
-                                    android:id="@+id/chat_page_sender_name"
+                                    android:id="@+id/chat_page_reicever_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white"
@@ -71,7 +71,7 @@
                                     android:textSize="@dimen/chat_page_sender_name_text_size" />
 
                                 <TextView
-                                    android:id="@+id/chat_page_sender_career"
+                                    android:id="@+id/chat_page_receiver_career"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
@@ -158,7 +158,7 @@
                 android:imeOptions="actionDone"
                 android:layout_height="@dimen/chat_page_back_button_size"
                 android:layout_gravity="center_vertical"
-                android:id="@+id/message_text"
+                android:id="@+id/chat_page_message_input_text"
                 android:hint="@string/message_box_hint_text"
                 android:inputType="text"
                 android:focusable="true"
@@ -171,7 +171,7 @@
             </EditText>
 
             <ImageView
-                android:id="@+id/send_message"
+                android:id="@+id/chat_page_send_message_button"
                 android:layout_width="@dimen/chat_page_back_button_size"
                 android:layout_height="@dimen/chat_page_back_button_size"
                 android:layout_gravity="center_vertical"

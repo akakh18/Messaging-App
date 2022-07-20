@@ -34,6 +34,9 @@ class UserSearchItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView
         itemView.findViewById<TextView>(R.id.user_search_item_career).setText(profile.career)
         itemView.setOnClickListener{
             val intent = Intent(activity, ChatActivity::class.java)
+            intent.putExtra("receiverUserId", profile.userId)
+            intent.putExtra("receiverCareer", profile.career)
+            intent.putExtra("receiverUsername", profile.username)
             activity.startActivity(intent)
         }
     }
