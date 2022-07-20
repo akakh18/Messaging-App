@@ -13,4 +13,5 @@
     <color name="selected_fragment_icon_color">#0027FF</color>
     <color name="chat_page_top_bar_blue">#5476E4</color>
     <color name="received_message_grey_color">#A39C9C</color>
+    <color name="blue_background">#4586BA</color>
 </resources>

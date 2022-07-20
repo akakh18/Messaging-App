@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ge.akakhishvili.messangerapp.R
@@ -30,7 +29,7 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
         initViews()
         userSearchService = UserSearchService(this)
         userProfilesList = arrayListOf()
-        userSearchAdapter = UserSearchAdapter(userProfilesList)
+        userSearchAdapter = UserSearchAdapter(userProfilesList, this)
         usersRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         usersRecyclerView.adapter = userSearchAdapter
 
