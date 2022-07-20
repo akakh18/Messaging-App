@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.adapter.MessagesAdapter
@@ -55,12 +58,13 @@ class ChatService(
                             messageItem["senderUserId"]!!
                         )
                         result.add(message)
+                        messagesList.add(message)
+                        messagesAdapter.notifyDataSetChanged()
                     }
                 }
             }
 
-            result.sortBy { it.messageTime }
-            messagesList.addAll(result)
+            messagesList.sortBy { it.messageTime }
             messagesAdapter.notifyDataSetChanged()
 
             if (messagesList.isNotEmpty()) {
@@ -72,6 +76,24 @@ class ChatService(
 
             }
         }
+    }
+
+    fun setListenerOnUpdate(receiver: String, sender: String) {
+        val chatRef = database.getReference("messages")
+        val searchKey = makeChatKey(receiver, sender)
+
+        messagesList.clear()
+        messagesAdapter.notifyDataSetChanged()
+
+        chatRef.child(searchKey).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                getMessagesFor(receiver, sender)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                
+            }
+        })
     }
 
     private fun makeChatKey(firstKey: String, secondKey: String): String {

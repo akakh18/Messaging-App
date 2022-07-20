@@ -47,7 +47,7 @@ class ChatActivity : AppCompatActivity() {
 
         chatService =
             ChatService(messagesAdapter, messagesList, noMessagesView, messagesRecyclerView)
-        chatService.getMessagesFor(receiverUserId, activeUserId)
+//        chatService.getMessagesFor(receiverUserId, activeUserId)
 
         addListeners()
     }
@@ -62,6 +62,12 @@ class ChatActivity : AppCompatActivity() {
         chatPageBackButton.setOnClickListener {
             finish()
         }
+
+        addDatabaseUpdateListener()
+    }
+
+    private fun addDatabaseUpdateListener() {
+        chatService.setListenerOnUpdate(receiverUserId, activeUserId)
     }
 
     private fun initViews() {
