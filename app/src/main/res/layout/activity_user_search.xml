@@ -16,12 +16,22 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/sky_backgrounds">
 
+        <ImageView
+            android:id="@+id/user_search_back_button"
+            android:layout_width="@dimen/chat_page_back_button_size"
+            android:layout_height="@dimen/chat_page_back_button_size"
+            android:src="@drawable/chat_page_back_button_img"
+            android:background="@color/chat_page_top_bar_blue"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:scaleType="centerCrop"
+            app:layout_collapseMode="pin" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_users_searchbar_height"
             android:layout_marginTop="@dimen/search_users_search_marginTop"
-            android:layout_marginStart="@dimen/searchbar_margin_start"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="@dimen/searchbar_margin_end"
             app:layout_collapseMode="pin"
             android:orientation="horizontal"
@@ -30,6 +40,7 @@
             android:background="@drawable/search_background">
 
             <ImageView
+
                 android:layout_width="@dimen/search_icon_width"
                 android:layout_height="@dimen/search_icon_height"
                 android:layout_marginStart="@dimen/search_icon_margin_start"

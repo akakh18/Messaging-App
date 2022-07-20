@@ -1,10 +1,11 @@
 package ge.akakhishvili.messangerapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ge.akakhishvili.messangerapp.R
@@ -17,6 +18,7 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
 
     private lateinit var userSearchEditText: EditText
     private lateinit var usersRecyclerView: RecyclerView
+    private lateinit var userSearchBackButton: ImageView
 
     private lateinit var userProfilesList: ArrayList<UserProfileWithId>
     private lateinit var userSearchAdapter: UserSearchAdapter
@@ -41,15 +43,27 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
         userSearchEditText.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {
-                if(s.length >= 3){
+                if (s.length >= 3) {
                     fetchUsers(s.toString())
                 }
             }
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {}
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+            }
         })
+
+        userSearchBackButton.setOnClickListener {
+            finish()
+        }
     }
 
     private fun fetchUsers(nicknameSearchString: String) {
@@ -59,6 +73,7 @@ class UserSearchActivity : AppCompatActivity(), IUserSearchView {
     private fun initViews() {
         userSearchEditText = findViewById(R.id.user_search_search_edit_text)
         usersRecyclerView = findViewById(R.id.user_search_users_recycler_view)
+        userSearchBackButton = findViewById(R.id.user_search_back_button)
     }
 
     override fun loadUsers(profiles: List<UserProfileWithId>) {

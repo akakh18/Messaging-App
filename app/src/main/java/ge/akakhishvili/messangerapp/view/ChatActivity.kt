@@ -22,6 +22,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var sendMessageButton: ImageView
     private lateinit var messagesRecyclerView: RecyclerView
     private lateinit var noMessagesView: TextView
+    private lateinit var chatPageBackButton: ImageView
     private lateinit var activeUserId: String
     private lateinit var receiverUserId: String
     private lateinit var receiverUsername: String
@@ -57,11 +58,16 @@ class ChatActivity : AppCompatActivity() {
             chatService.sendMessage(activeUserId, receiverUserId, messageText)
             messageInputText.setText("")
         }
+
+        chatPageBackButton.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initViews() {
         messageInputText = findViewById(R.id.chat_page_message_input_text)
         sendMessageButton = findViewById(R.id.chat_page_send_message_button)
+        chatPageBackButton = findViewById(R.id.chat_page_back_button)
         noMessagesView = findViewById(R.id.chat_no_messages_textview)
         messagesRecyclerView = findViewById(R.id.chat_page_messages_recycler_view)
 

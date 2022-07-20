@@ -10,10 +10,10 @@ import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.adapter.MessagesAdapter
 
 class ChatService(
-    val messagesAdapter: MessagesAdapter,
-    val messagesList: ArrayList<Message>,
-    val noMessagesView: TextView,
-    val messagesView: RecyclerView
+    private val messagesAdapter: MessagesAdapter,
+    private val messagesList: ArrayList<Message>,
+    private val noMessagesView: TextView,
+    private val messagesView: RecyclerView
 ) {
 
     private var database = Firebase.database
@@ -55,14 +55,21 @@ class ChatService(
                             messageItem["senderUserId"]!!
                         )
                         result.add(message)
-                        messagesList.add(message)
-                        messagesAdapter.notifyDataSetChanged()
                     }
                 }
             }
+
+            result.sortBy { it.messageTime }
+            messagesList.addAll(result)
+            messagesAdapter.notifyDataSetChanged()
+
             if (messagesList.isNotEmpty()) {
                 noMessagesView.visibility = View.GONE
                 messagesView.visibility = View.VISIBLE
+            } else {
+                noMessagesView.visibility = View.VISIBLE
+                messagesView.visibility = View.GONE
+
             }
         }
     }
