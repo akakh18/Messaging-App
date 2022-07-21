@@ -3,27 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_input_form.xml" value="0.173" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_page_back_button_img.xml" value="0.173" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_photo_background.xml" value="0.173" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/received_message.xml" value="0.173" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/sent_message.xml" value="0.173" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/user_search_item_shape.xml" value="0.2265" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_chat.xml" value="0.16" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_main_page.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_user_search.xml" value="0.264" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_message_list.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_profile_page.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/message.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/received_message_layout.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/sent_message_layout.xml" value="0.1" />
+        <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/user_search_item.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/background.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/login_button_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/login_page_button_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/login_page_edit_text_background.xml" value="0.2425" />
-        <entry key="app/src/main/res/drawable/search_background.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/white_button_background.xml" value="0.1575" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.17325227963525835" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_page.xml" value="0.340625" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.3151041666666667" />
-        <entry key="app/src/main/res/layout/activity_user_search.xml" value="0.17325227963525835" />
         <entry key="app/src/main/res/layout/fragment_message_list.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_profile_page.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/message.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/received_message_layout.xml" value="0.17325227963525835" />
-        <entry key="app/src/main/res/layout/sent_message_layout.xml" value="0.17325227963525835" />
-        <entry key="app/src/main/res/layout/user_search_item.xml" value="0.17325227963525835" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1185" />
       </map>
     </option>

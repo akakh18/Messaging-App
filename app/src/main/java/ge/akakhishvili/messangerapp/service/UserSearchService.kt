@@ -20,7 +20,7 @@ class UserSearchService(var userSearchView: IUserSearchView) {
             val data = it.value as HashMap<String, HashMap<String, String>>
             for ((key, userProfile) in data) {
                 if(key != currentUserId){
-                    if (userProfile["username"]!!.contains(nicknameSearchString)) {
+                    if (userProfile["username"]!!.toLowerCase().contains(nicknameSearchString.toLowerCase())) {
                         val newProfile =
                             UserProfileWithId(
                                 userProfile["username"]!!,
