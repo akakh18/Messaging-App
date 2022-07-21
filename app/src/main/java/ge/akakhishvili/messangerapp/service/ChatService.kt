@@ -66,15 +66,15 @@ class ChatService(
 
             messagesList.sortBy { it.messageTime }
             messagesAdapter.notifyDataSetChanged()
-
             if (messagesList.isNotEmpty()) {
                 noMessagesView.visibility = View.GONE
                 messagesView.visibility = View.VISIBLE
+                messagesView.smoothScrollToPosition(messagesList.size)
             } else {
                 noMessagesView.visibility = View.VISIBLE
                 messagesView.visibility = View.GONE
-
             }
+
         }
     }
 

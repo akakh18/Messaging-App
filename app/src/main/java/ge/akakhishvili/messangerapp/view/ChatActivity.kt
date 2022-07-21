@@ -79,7 +79,10 @@ class ChatActivity : AppCompatActivity() {
 
         messagesAdapter = MessagesAdapter(messagesList, this)
         messagesRecyclerView.adapter = messagesAdapter
-        messagesRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
+        var layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        layoutManager.stackFromEnd = true
+        messagesRecyclerView.layoutManager = layoutManager
 
         findViewById<TextView>(R.id.chat_page_reicever_name).setText(receiverUsername)
         findViewById<TextView>(R.id.chat_page_receiver_career).setText(receiverCareer)
