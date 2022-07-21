@@ -1,5 +1,6 @@
 package ge.akakhishvili.messangerapp.service
 
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.view.`interface`.IUserSearchView
@@ -9,6 +10,8 @@ class UserSearchService(var userSearchView: IUserSearchView) {
     private var database = Firebase.database
 
     fun findUsersLike(nicknameSearchString: String) {
+        var currentUserId = Firebase.auth.currentUser!!.uid
+
 
         val searchedProfiles = arrayListOf<UserProfileWithId>()
 
@@ -16,15 +19,17 @@ class UserSearchService(var userSearchView: IUserSearchView) {
         profilesRef.get().addOnSuccessListener {
             val data = it.value as HashMap<String, HashMap<String, String>>
             for ((key, userProfile) in data) {
-                if (userProfile["username"]!!.contains(nicknameSearchString)) {
-                    val newProfile =
-                        UserProfileWithId(
-                            userProfile["username"]!!,
-                            userProfile["career"]!!,
-                            userProfile["hasProfilePicture"]!! as Boolean?,
-                            key
-                        )
-                    searchedProfiles.add(newProfile)
+                if(key != currentUserId){
+                    if (userProfile["username"]!!.contains(nicknameSearchString)) {
+                        val newProfile =
+                            UserProfileWithId(
+                                userProfile["username"]!!,
+                                userProfile["career"]!!,
+                                userProfile["hasProfilePicture"]!! as Boolean?,
+                                key
+                            )
+                        searchedProfiles.add(newProfile)
+                    }
                 }
             }
             userSearchView.loadUsers(searchedProfiles)
