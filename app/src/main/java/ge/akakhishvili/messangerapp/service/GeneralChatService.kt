@@ -1,5 +1,8 @@
 package ge.akakhishvili.messangerapp.service
 
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.view.`interface`.IMessageListView
@@ -72,6 +75,19 @@ class GeneralChatService(val view: IMessageListView) {
             return UserKeyWithLastMessage(key, mappedMessages[0].message!!, mappedMessages[0].messageTime!!)
         }
         return UserKeyWithLastMessage(key, "", 0L)
+    }
+
+    fun addChatsListener(currentUserId: String) {
+        var messagesRef = Firebase.database.getReference("messages")
+        messagesRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                fetchChatsForUser(currentUserId)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }
 

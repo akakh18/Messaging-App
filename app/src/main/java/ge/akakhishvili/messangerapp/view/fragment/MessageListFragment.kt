@@ -41,6 +41,11 @@ class MessageListFragment : Fragment(), IMessageListView {
         super.onActivityCreated(savedInstanceState)
         initViews()
         fetchUserChats()
+        addChatsListener()
+    }
+
+    private fun addChatsListener() {
+        chatService.addChatsListener(Firebase.auth.currentUser!!.uid!!)
     }
 
     private fun fetchUserChats() {
