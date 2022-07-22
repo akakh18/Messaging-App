@@ -117,6 +117,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/left_padding"
                 android:paddingRight="@dimen/left_padding"
+                android:layout_marginBottom="@dimen/messages_recycler_view_margin_bottom"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <ScrollView

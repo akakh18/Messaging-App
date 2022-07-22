@@ -1,14 +1,12 @@
 package ge.akakhishvili.messangerapp.service
 
-import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.util.*
+import ge.akakhishvili.messangerapp.view.`interface`.IMessageListView
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class GeneralChatService {
+class GeneralChatService(val view: IMessageListView) {
     fun fetchChatsForUser(currentUserId: String) {
         var messagesRef = Firebase.database.getReference("messages")
         messagesRef.get().addOnSuccessListener {
@@ -16,7 +14,7 @@ class GeneralChatService {
             var userChats = getUserChats(currentUserId, messages)
             var userChatsWithNicknames = arrayListOf<UserKeyWithLastMessageAndNickname>()
             var profilesRef = Firebase.database.getReference("profiles")
-            var profiles = profilesRef.get().addOnSuccessListener {
+            profilesRef.get().addOnSuccessListener {
                 var profilesData = it.value as HashMap<String, HashMap<String, String>>
                 for(user in userChats){
                     var nextUserData = profilesData[user.secondUserKey]
@@ -24,11 +22,14 @@ class GeneralChatService {
                         UserKeyWithLastMessageAndNickname(
                             user.secondUserKey,
                             nextUserData?.get("username")!!,
-                            user.lastMessage
+                            user.lastMessage,
+                            user.messageTime,
+                            nextUserData["career"]!!
                         )
                     )
                 }
-                println(userChatsWithNicknames)
+                view.updateChats(userChatsWithNicknames)
+
             }
         }
     }
@@ -41,7 +42,7 @@ class GeneralChatService {
             var secondKey = tokens[1]
             var userKeyWithLastMessage: UserKeyWithLastMessage
             if(firstKey.equals(currentUserId)){
-                userKeyWithLastMessage = makeUserKeyWithLastMessage(firstKey, v)
+                userKeyWithLastMessage = makeUserKeyWithLastMessage(secondKey, v)
                 userChats.add(userKeyWithLastMessage)
             }else if(secondKey.equals(currentUserId)){
                 userKeyWithLastMessage = makeUserKeyWithLastMessage(firstKey, v)
@@ -68,15 +69,18 @@ class GeneralChatService {
             it.messageTime
         }
         if(mappedMessages.size > 0){
-            return UserKeyWithLastMessage(key, mappedMessages[0].message!!)
+            return UserKeyWithLastMessage(key, mappedMessages[0].message!!, mappedMessages[0].messageTime!!)
         }
-        return UserKeyWithLastMessage(key, "")
+        return UserKeyWithLastMessage(key, "", 0L)
     }
 }
 
 data class UserKeyWithLastMessageAndNickname(val secondUserKey: String,
                                              val secondUserNickname: String,
-                                             val lastMessage: String)
+                                             val lastMessage: String,
+                                             val messageTime: Long,
+                                             val secondUserCareer: String)
 
 data class UserKeyWithLastMessage(val secondUserKey: String,
-                                  val lastMessage: String)
+                                  val lastMessage: String,
+                                  val messageTime: Long, )

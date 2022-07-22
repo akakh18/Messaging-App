@@ -60,4 +60,7 @@
     <dimen name="search_users_searchbar_height">40dp</dimen>
     <dimen name="search_users_search_marginTop">10dp</dimen>
     <dimen name="search_users_toolbar_height">60dp</dimen>
+    <dimen name="chat_item_height">100dp</dimen>
+    <dimen name="chats_recycler_view_margin_top">150dp</dimen>
+    <dimen name="messages_recycler_view_margin_bottom">80dp</dimen>
 </resources>
