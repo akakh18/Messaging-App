@@ -1,14 +1,16 @@
 package ge.akakhishvili.messangerapp.view.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ge.akakhishvili.messangerapp.R
@@ -42,6 +44,32 @@ class MessageListFragment : Fragment(), IMessageListView {
         initViews()
         fetchUserChats()
         addChatsListener()
+        addSearchListener()
+    }
+
+    private fun addSearchListener() {
+        requireActivity()
+            .findViewById<TextView>(R.id.messages_list_fragment_search_text_view)
+                .addTextChangedListener(object : TextWatcher {
+
+                    override fun afterTextChanged(s: Editable) {
+                        if (s.length >= 0) {
+                            chatService.searchUsersByName(Firebase.auth.currentUser!!.uid, s.toString())
+                        }
+                    }
+
+                    override fun beforeTextChanged(
+                        s: CharSequence, start: Int,
+                        count: Int, after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence, start: Int,
+                        before: Int, count: Int
+                    ) {
+                    }
+                })
     }
 
     private fun addChatsListener() {
@@ -50,7 +78,7 @@ class MessageListFragment : Fragment(), IMessageListView {
 
     private fun fetchUserChats() {
         var currentUserId = Firebase.auth.currentUser!!.uid
-        chatService.fetchChatsForUser(currentUserId)
+        chatService.fetchChatsForUser(currentUserId, null)
     }
 
     private fun initViews() {

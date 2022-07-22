@@ -10,7 +10,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class GeneralChatService(val view: IMessageListView) {
-    fun fetchChatsForUser(currentUserId: String) {
+    fun fetchChatsForUser(currentUserId: String, searchKeyword: String?) {
         var messagesRef = Firebase.database.getReference("messages")
         messagesRef.get().addOnSuccessListener {
             var messages = it.value as HashMap<String, Object>
@@ -31,7 +31,12 @@ class GeneralChatService(val view: IMessageListView) {
                         )
                     )
                 }
-                view.updateChats(userChatsWithNicknames)
+                var searchedList = userChatsWithNicknames
+                if(searchKeyword != null){
+                    searchedList = userChatsWithNicknames.filter { u ->
+                        u.secondUserNickname!!.lowercase().contains(searchKeyword!!.lowercase()) } as ArrayList<UserKeyWithLastMessageAndNickname>
+                }
+                view.updateChats(searchedList)
 
             }
         }
@@ -81,13 +86,17 @@ class GeneralChatService(val view: IMessageListView) {
         var messagesRef = Firebase.database.getReference("messages")
         messagesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                fetchChatsForUser(currentUserId)
+                fetchChatsForUser(currentUserId, null)
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+    }
+
+    fun searchUsersByName(currentUserId: String, searchString: String) {
+        fetchChatsForUser(currentUserId, searchString)
     }
 }
 

@@ -65,6 +65,7 @@
                         android:contentDescription="@string/search_desc" />
 
                     <EditText
+                        android:id="@+id/messages_list_fragment_search_text_view"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
