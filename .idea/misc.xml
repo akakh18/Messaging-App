@@ -3,9 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/activity_chat.xml" value="0.13601823708206687" />
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/fragment_message_list.xml" value="0.1" />
-        <entry key="..\:/Users/Surface/Desktop/AndroidFinal/Messaging-App/app/src/main/res/layout/message.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_input_form.xml" value="0.173" />
         <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_page_back_button_img.xml" value="0.173" />
         <entry key="..\:/Users/koba.paikidze/Desktop/AndroidFinal/Messaging-App/app/src/main/res/drawable/chat_photo_background.xml" value="0.173" />
@@ -28,6 +25,7 @@
         <entry key="app/src/main/res/drawable/login_page_button_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/login_page_edit_text_background.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/white_button_background.xml" value="0.1575" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_page.xml" value="0.340625" />

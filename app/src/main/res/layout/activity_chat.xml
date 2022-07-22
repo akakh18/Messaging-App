@@ -179,7 +179,7 @@
                 android:layout_width="@dimen/chat_page_back_button_size"
                 android:layout_height="@dimen/chat_page_back_button_size"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/circle_image_foreground"
+                android:src="@drawable/send_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
