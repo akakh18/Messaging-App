@@ -1,5 +1,6 @@
 package ge.akakhishvili.messangerapp.view
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
@@ -9,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import ge.akakhishvili.messangerapp.R
 import ge.akakhishvili.messangerapp.adapter.MessagesAdapter
 import ge.akakhishvili.messangerapp.service.ChatService
 import ge.akakhishvili.messangerapp.service.Message
+import java.io.File
 
 class ChatActivity : AppCompatActivity() {
 
@@ -27,6 +30,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var receiverUserId: String
     private lateinit var receiverUsername: String
     private lateinit var receiverCareer: String
+    private var hasProfilePicture: Boolean? = null
     private lateinit var messagesAdapter: MessagesAdapter
 
     private lateinit var messagesList: ArrayList<Message>
@@ -40,14 +44,13 @@ class ChatActivity : AppCompatActivity() {
         receiverUserId = intent.getStringExtra("receiverUserId").toString()
         receiverUsername = intent.getStringExtra("receiverUsername").toString()
         receiverCareer = intent.getStringExtra("receiverCareer").toString()
+        hasProfilePicture = intent.getBooleanExtra("hasProfilePicture", false)
 
         messagesList = arrayListOf()
 
         initViews()
 
-        chatService =
-            ChatService(messagesAdapter, messagesList, noMessagesView, messagesRecyclerView)
-//        chatService.getMessagesFor(receiverUserId, activeUserId)
+        chatService = ChatService(messagesAdapter, messagesList, noMessagesView, messagesRecyclerView)
 
         addListeners()
     }
@@ -87,6 +90,14 @@ class ChatActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.chat_page_reicever_name).setText(receiverUsername)
         findViewById<TextView>(R.id.chat_page_receiver_career).setText(receiverCareer)
 
+        if(hasProfilePicture!!){
+            var ref = FirebaseStorage.getInstance().reference.child("images/profile_image_" + receiverUserId)
+            var localfile = File.createTempFile("tempimage", "jpg")
+            ref.getFile(localfile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                findViewById<ImageView>(R.id.sender_image).setImageBitmap(bitmap)
+            }
+        }
 
     }
 

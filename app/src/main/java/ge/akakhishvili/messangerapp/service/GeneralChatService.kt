@@ -25,7 +25,8 @@ class GeneralChatService(val view: IMessageListView) {
                             nextUserData?.get("username")!!,
                             user.lastMessage,
                             user.messageTime,
-                            nextUserData["career"]!!
+                            nextUserData["career"]!!,
+                            nextUserData["hasProfilePicture"]!! as Boolean
                         )
                     )
                 }
@@ -115,7 +116,8 @@ data class UserKeyWithLastMessageAndNickname(
     val secondUserNickname: String,
     val lastMessage: String,
     val messageTime: Long,
-    val secondUserCareer: String
+    val secondUserCareer: String,
+    val hasProfileImage: Boolean
 )
 
 data class UserKeyWithLastMessage(
