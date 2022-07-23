@@ -47,34 +47,35 @@ class ChatService(
         val chatRef = database.getReference("messages")
 
         chatRef.get().addOnSuccessListener {
+            if(it != null && it.value != null){
             val data = it.value as HashMap<String, HashMap<String, HashMap<String, String>>>
-            for ((key, messagesItem) in data) {
-                if (key == searchKey) {
-                    for ((_, messageItem) in messagesItem) {
-                        val message = Message(
-                            messageItem["message"]!!,
-                            messageItem["messageTime"]!! as Long?,
-                            messageItem["receiverUserId"]!!,
-                            messageItem["senderUserId"]!!
-                        )
-                        result.add(message)
-                        messagesList.add(message)
-                        messagesAdapter.notifyDataSetChanged()
+                for ((key, messagesItem) in data) {
+                    if (key == searchKey) {
+                        for ((_, messageItem) in messagesItem) {
+                            val message = Message(
+                                messageItem["message"]!!,
+                                messageItem["messageTime"]!! as Long?,
+                                messageItem["receiverUserId"]!!,
+                                messageItem["senderUserId"]!!
+                            )
+                            result.add(message)
+                            messagesList.add(message)
+                            messagesAdapter.notifyDataSetChanged()
+                        }
                     }
                 }
-            }
 
-            messagesList.sortBy { it.messageTime }
-            messagesAdapter.notifyDataSetChanged()
-            if (messagesList.isNotEmpty()) {
-                noMessagesView.visibility = View.GONE
-                messagesView.visibility = View.VISIBLE
-                messagesView.smoothScrollToPosition(messagesList.size)
-            } else {
-                noMessagesView.visibility = View.VISIBLE
-                messagesView.visibility = View.GONE
+                messagesList.sortBy { it.messageTime }
+                messagesAdapter.notifyDataSetChanged()
+                if (messagesList.isNotEmpty()) {
+                    noMessagesView.visibility = View.GONE
+                    messagesView.visibility = View.VISIBLE
+                    messagesView.smoothScrollToPosition(messagesList.size)
+                } else {
+                    noMessagesView.visibility = View.VISIBLE
+                    messagesView.visibility = View.GONE
+                }
             }
-
         }
     }
 

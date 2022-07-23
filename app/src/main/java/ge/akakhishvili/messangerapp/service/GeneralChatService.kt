@@ -11,35 +11,37 @@ class GeneralChatService(val view: IMessageListView) {
     fun fetchChatsForUser(currentUserId: String, searchKeyword: String?) {
         val messagesRef = Firebase.database.getReference("messages")
         messagesRef.get().addOnSuccessListener {
-            val messages = it.value as HashMap<String, Object>
-            val userChats = getUserChats(currentUserId, messages)
-            val userChatsWithNicknames = arrayListOf<UserKeyWithLastMessageAndNickname>()
-            val profilesRef = Firebase.database.getReference("profiles")
-            profilesRef.get().addOnSuccessListener {
-                val profilesData = it.value as HashMap<String, HashMap<String, String>>
-                for (user in userChats) {
-                    val nextUserData = profilesData[user.secondUserKey]
-                    userChatsWithNicknames.add(
-                        UserKeyWithLastMessageAndNickname(
-                            user.secondUserKey,
-                            nextUserData?.get("username")!!,
-                            user.lastMessage,
-                            user.messageTime,
-                            nextUserData["career"]!!,
-                            nextUserData["hasProfilePicture"]!! as Boolean
+            if (it != null && it.value != null) {
+                val messages = it.value as HashMap<String, Object>
+                val userChats = getUserChats(currentUserId, messages)
+                val userChatsWithNicknames = arrayListOf<UserKeyWithLastMessageAndNickname>()
+                val profilesRef = Firebase.database.getReference("profiles")
+                profilesRef.get().addOnSuccessListener {
+                    val profilesData = it.value as HashMap<String, HashMap<String, String>>
+                    for (user in userChats) {
+                        val nextUserData = profilesData[user.secondUserKey]
+                        userChatsWithNicknames.add(
+                            UserKeyWithLastMessageAndNickname(
+                                user.secondUserKey,
+                                nextUserData?.get("username")!!,
+                                user.lastMessage,
+                                user.messageTime,
+                                nextUserData["career"]!!,
+                                nextUserData["hasProfilePicture"]!! as Boolean
+                            )
                         )
-                    )
-                }
-                var searchedList = userChatsWithNicknames
-                if (searchKeyword != null) {
-                    searchedList = userChatsWithNicknames.filter { u ->
-                        u.secondUserNickname.lowercase().contains(searchKeyword.lowercase())
-                    } as ArrayList<UserKeyWithLastMessageAndNickname>
-                }
+                    }
+                    var searchedList = userChatsWithNicknames
+                    if (searchKeyword != null) {
+                        searchedList = userChatsWithNicknames.filter { u ->
+                            u.secondUserNickname.lowercase().contains(searchKeyword.lowercase())
+                        } as ArrayList<UserKeyWithLastMessageAndNickname>
+                    }
 
-                searchedList.sortBy { -1 * it.messageTime }
-                view.updateChats(searchedList)
+                    searchedList.sortBy { -1 * it.messageTime }
+                    view.updateChats(searchedList)
 
+                }
             }
         }
     }

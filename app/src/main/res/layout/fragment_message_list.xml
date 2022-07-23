@@ -108,7 +108,7 @@
             android:id="@+id/no_message_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_messages"
+            android:text="@string/no_chats"
             android:layout_marginTop="200dp"
             android:visibility="gone"
             android:textSize="@dimen/no_messages_text_size"
@@ -116,19 +116,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/no_message_loading_progress_bar"
-            style="?android:attr/progressBarStyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/progress_bar_margin_top"
-            android:layout_gravity="center"
-            android:indeterminateTint="@color/waiting_button_color"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

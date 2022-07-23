@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +24,7 @@ class MessageListFragment : Fragment(), IMessageListView {
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var chatList: ArrayList<UserKeyWithLastMessageAndNickname>
     private lateinit var chatService: GeneralChatService
-    private lateinit var fetchingBar: ProgressBar
+    private lateinit var noChatsTextView: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,19 +89,20 @@ class MessageListFragment : Fragment(), IMessageListView {
         chatsRecyclerView.adapter = chatAdapter
 
         chatService = GeneralChatService(this)
-        fetchingBar = requireActivity().findViewById(R.id.no_message_loading_progress_bar)
+        noChatsTextView = requireActivity().findViewById(R.id.no_message_text_view)
+        noChatsTextView.visibility = View.VISIBLE
     }
 
     override fun updateChats(userMessageData: List<UserKeyWithLastMessageAndNickname>) {
         if(userMessageData.size != 0){
             chatsRecyclerView.visibility = View.VISIBLE
-            fetchingBar.visibility = View.GONE
+            noChatsTextView.visibility = View.GONE
             chatList.clear()
             chatList.addAll(userMessageData)
             chatAdapter.notifyDataSetChanged()
         }else {
             chatsRecyclerView.visibility = View.GONE
-            fetchingBar.visibility = View.VISIBLE
+            noChatsTextView.visibility = View.VISIBLE
         }
     }
 }
